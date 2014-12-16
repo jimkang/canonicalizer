@@ -1,0 +1,35 @@
+{
+  "name": "canonicalizer",
+  "version": "1.0.0",
+  "description": "Provides singular and plural forms of nouns.",
+  "main": "canonicalizer.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jimkang/canonicalizer.git"
+  },
+  "keywords": [
+    "singular",
+    "plural",
+    "words",
+    "nouns",
+    "language",
+    "pluralization",
+    "canonicaliztion"
+  ],
+  "author": "Jim Kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimkang/canonicalizer/issues"
+  },
+  "homepage": "https://github.com/jimkang/canonicalizer",
+  "devDependencies": {
+    "mocha": "~1.18.2"
+  },
+  "dependencies": {
+    "inflection": "^1.5.3",
+    "lodash": "^2.4.1"
+  }
+}
