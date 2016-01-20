@@ -176,7 +176,8 @@ describe('Canonicalizer', function canonicalizerSuite() {
         'cookie',
         'microwave',
         'corgi',
-        'passerby'
+        'passerby',
+        'wave'
       ],
       expectedResults: [
         'criteria',
@@ -187,7 +188,8 @@ describe('Canonicalizer', function canonicalizerSuite() {
         'cookies',
         'microwaves',
         'corgis',
-        'passersby'        
+        'passersby',
+        'waves'
       ]
     });
 
@@ -200,7 +202,8 @@ describe('Canonicalizer', function canonicalizerSuite() {
         'pis',
         'microwaves',
         'corgis',
-        'passersby'
+        'passersby',
+        'waves'
       ],
       expectedResults: [
         'criterion',
@@ -210,7 +213,8 @@ describe('Canonicalizer', function canonicalizerSuite() {
         'pi',
         'microwave',
         'corgi',
-        'passerby'
+        'passerby',
+        'wave'
       ]
     });
   });

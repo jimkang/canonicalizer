@@ -14,7 +14,8 @@ var pluralsForSingulars = {
   cookie: 'cookies',
   microwave: 'microwaves',
   corgi: 'corgis',
-  passerby: 'passersby'
+  passerby: 'passersby',
+  wave: 'waves'
 };
 
 var singularsForPlurals = _.invert(pluralsForSingulars);
