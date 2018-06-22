@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var invert = require('lodash.invert');
 
 var pluralsForSingulars = {
   goose: 'geese',
@@ -18,7 +18,7 @@ var pluralsForSingulars = {
   wave: 'waves'
 };
 
-var singularsForPlurals = _.invert(pluralsForSingulars);
+var singularsForPlurals = invert(pluralsForSingulars);
 
 // These are one-way plural-to-singular conversions. These singular forms 
 // should never be converted back to the plural forms. This is here basically 

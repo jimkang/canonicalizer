@@ -1,7 +1,8 @@
 var inflection = require('inflection');
 var uncountableNouns = require('./uncountablenouns');
 var uncountableSuffixes = require('./uncountablesuffixes');
-var _ = require('lodash');
+var find = require('lodash.find');
+var invert = require('lodash.invert');
 var oddities = require('./canonicaloddities');
 var abbr = require('./abbr');
 
@@ -19,8 +20,8 @@ function getSingularAndPluralForms(word) {
   word = abbr.expand(word);
 
   var isUncountable = isAGerund(word) ||
-    _.find(uncountableNouns, endsWithUncountableNoun) ||
-    _.find(uncountableSuffixes, endsWithUncountableNoun);
+    find(uncountableNouns, endsWithUncountableNoun) ||
+    find(uncountableSuffixes, endsWithUncountableNoun);
 
   var pluralWord = word;
   var singularWord = word;  
