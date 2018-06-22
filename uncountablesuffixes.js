@@ -1,6 +1,3 @@
-var uncountableSuffixes = [
-  'ization',
-  'ware'
-];
+var uncountableSuffixes = ['ization', 'ware'];
 
 module.exports = uncountableSuffixes;

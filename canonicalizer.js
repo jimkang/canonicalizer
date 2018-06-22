@@ -2,40 +2,35 @@ var inflection = require('inflection');
 var uncountableNouns = require('./uncountablenouns');
 var uncountableSuffixes = require('./uncountablesuffixes');
 var find = require('lodash.find');
-var invert = require('lodash.invert');
 var oddities = require('./canonicaloddities');
 var abbr = require('./abbr');
 
 function getSingularAndPluralForms(word) {
-  var word = word.toLowerCase();
-  
+  word = word.toLowerCase();
+
   function endsWithUncountableNoun(uncountable) {
     return endsWith(word, uncountable);
-  }
-  function endsWithUncountableSuffix(uncountableSuffix) {
-    return endsWith(word, uncountableSuffix);
   }
 
   word = depossess(word);
   word = abbr.expand(word);
 
-  var isUncountable = isAGerund(word) ||
+  var isUncountable =
+    isAGerund(word) ||
     find(uncountableNouns, endsWithUncountableNoun) ||
     find(uncountableSuffixes, endsWithUncountableNoun);
 
   var pluralWord = word;
-  var singularWord = word;  
+  var singularWord = word;
 
   if (!isUncountable) {
     if (oddities.wordIsInOddities(word)) {
       var forms = oddities.getBothForms(word);
       singularWord = forms[0];
       pluralWord = forms[1];
-    }
-    else if (endsWith(word, 'is') || endsWith(word, 'us')) {
+    } else if (endsWith(word, 'is') || endsWith(word, 'us')) {
       pluralWord = pluralWord + 'es';
-    }
-    else {
+    } else {
       singularWord = inflection.singularize(word);
       pluralWord = inflection.pluralize(word);
     }
@@ -48,8 +43,7 @@ function getSingularAndPluralForms(word) {
 function endsWith(str, suffix) {
   if (str.length < 1 || str.length < suffix.length) {
     return false;
-  }
-  else {
+  } else {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
   }
 }
@@ -61,11 +55,10 @@ function isAGerund(word) {
 // Assumed word ends in 's.
 function depossess(word) {
   var depossessed = word;
-  if (endsWith(word, '\'s')) {
+  if (endsWith(word, "'s")) {
     // Singular possessive.
     depossessed = word.substr(0, word.length - 2);
-  }
-  else if (word[0] !== '\'' && endsWith(word, 's\'')) {
+  } else if (word[0] !== "'" && endsWith(word, "s'")) {
     // Plural possessive.
     depossessed = word.substr(0, word.length - 1);
   }

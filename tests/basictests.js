@@ -1,16 +1,18 @@
+/* global describe, it */
+
 var assert = require('assert');
 var canonicalizer = require('../canonicalizer');
 
 function singularToPluralTest(opts) {
   opts.topics.forEach(function testPlurlization(topic, i) {
-  	var forms = canonicalizer.getSingularAndPluralForms(topic);
+    var forms = canonicalizer.getSingularAndPluralForms(topic);
     assert.equal(forms[1], opts.expectedResults[i]);
   });
 }
 
 function pluralToSingularTest(opts) {
   opts.topics.forEach(function testPlurlization(topic, i) {
-  	var forms = canonicalizer.getSingularAndPluralForms(topic);
+    var forms = canonicalizer.getSingularAndPluralForms(topic);
     assert.equal(forms[0], opts.expectedResults[i]);
   });
 }
@@ -35,133 +37,96 @@ describe('Canonicalizer', function canonicalizerSuite() {
     });
   });
 
-  it('Get plural forms of singular words that end in s', 
-    function singularTopicsThatEndInSTest() {
-      singularToPluralTest({
-        topics: [
-          'epidermis',
-          'kiss',
-          'corpus'
-        ],
-        expectedResults: [
-          'epidermises',
-          'kisses',
-          'corpuses'
-        ]
-      });
-    }
-  );
+  it('Get plural forms of singular words that end in s', function singularTopicsThatEndInSTest() {
+    singularToPluralTest({
+      topics: ['epidermis', 'kiss', 'corpus'],
+      expectedResults: ['epidermises', 'kisses', 'corpuses']
+    });
+  });
 
   it('Get singular forms of plural words', function pluralsingularToPluralTest() {
     pluralToSingularTest({
-      topics: [
-        'sandwiches',
-        'grappling hooks',
-        'harmonicas',
-        'geese'
-      ],
-      expectedResults: [
-        'sandwich',
-        'grappling hook',
-        'harmonica',
-        'goose'
-      ]
+      topics: ['sandwiches', 'grappling hooks', 'harmonicas', 'geese'],
+      expectedResults: ['sandwich', 'grappling hook', 'harmonica', 'goose']
     });
-
   });
 
-  it('Get plural forms of mass nouns that do not change when pluralized', 
-    function massNounsingularToPluralTest() {
-      singularToPluralTest({
-        topics: [
-          'corn syrup',
-          'toilet paper',
-          'milk',
-          'mayonnaise',
-          'blood', 
-          'sweatpants',
-          'growth',
-          'sourness',
-          'counseling',
-          'iOS',
-          'Mars',
-          'mars',
-          'ALA',
-          'pi',
-          'earthenware',
-          'pix',
-          'surf',
-          'usa',
-          'ia',
-          'oxygen',
-          'estrogen',
-          'narcissism',
-          'democratization',
-          'physics',
-          'frost',
-          'hemlock',
-          'camouflauge',
-          'paranoia'
-        ],
-        expectedResults: [
-          'corn syrup',
-          'toilet paper',
-          'milk',
-          'mayonnaise',
-          'blood', 
-          'sweatpants',
-          'growth',
-          'sourness',
-          'counseling',
-          'ios',
-          'mars',
-          'mars',
-          'ala',
-          'pi',
-          'earthenware',
-          'pix',
-          'surf',
-          'usa',
-          'ia! ia!',
-          'oxygen',
-          'estrogen',
-          'narcissism',
-          'democratization',
-          'physics',
-          'frost',
-          'hemlock',
-          'camouflauge',
-          'paranoia'
-        ]
-      });
-    }
-  );
+  it('Get plural forms of mass nouns that do not change when pluralized', function massNounsingularToPluralTest() {
+    singularToPluralTest({
+      topics: [
+        'corn syrup',
+        'toilet paper',
+        'milk',
+        'mayonnaise',
+        'blood',
+        'sweatpants',
+        'growth',
+        'sourness',
+        'counseling',
+        'iOS',
+        'Mars',
+        'mars',
+        'ALA',
+        'pi',
+        'earthenware',
+        'pix',
+        'surf',
+        'usa',
+        'ia',
+        'oxygen',
+        'estrogen',
+        'narcissism',
+        'democratization',
+        'physics',
+        'frost',
+        'hemlock',
+        'camouflauge',
+        'paranoia'
+      ],
+      expectedResults: [
+        'corn syrup',
+        'toilet paper',
+        'milk',
+        'mayonnaise',
+        'blood',
+        'sweatpants',
+        'growth',
+        'sourness',
+        'counseling',
+        'ios',
+        'mars',
+        'mars',
+        'ala',
+        'pi',
+        'earthenware',
+        'pix',
+        'surf',
+        'usa',
+        'ia! ia!',
+        'oxygen',
+        'estrogen',
+        'narcissism',
+        'democratization',
+        'physics',
+        'frost',
+        'hemlock',
+        'camouflauge',
+        'paranoia'
+      ]
+    });
+  });
 
   it('Get plural forms of possessive form nouns', function possessiveTest() {
     singularToPluralTest({
-      topics: [
-        'butcher\'s',
-        'fishes\''
-      ],
-      expectedResults: [
-        'butchers',
-        'fishes'
-      ]
+      topics: ["butcher's", "fishes'"],
+      expectedResults: ['butchers', 'fishes']
     });
   });
 
   it('Get plural forms of abbreviated nouns', function abbrsingularToPluralTest() {
     singularToPluralTest({
-      topics: [
-        'sept',
-        'lb',
-        'lbs'
-      ],
-      expectedResults: [
-        'Septembers',
-        'pounds',
-        'pounds'
-      ]
+      topics: ['sept', 'lb', 'lbs'],
+      expectedResults: ['Septembers', 'pounds', 'pounds']
     });
   });
 
@@ -218,5 +183,4 @@ describe('Canonicalizer', function canonicalizerSuite() {
       ]
     });
   });
-
 });
